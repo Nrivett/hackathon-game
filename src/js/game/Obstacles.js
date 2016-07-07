@@ -47,7 +47,7 @@
 
             this.arrayOfObstacles = [
                 {
-                    "boxes": [0,0,1,0,0,0,0,0,0],
+                    "boxes": [1,1,1,0,0,0,0,1,1],
                     "xPos": 1200
                 },
                 {
@@ -124,7 +124,7 @@
                         for (n = 0; n < l; n++) {
                             if(obj.boxes[n]===1) that.view.drawImage(that.imageWM, obj.xPos, n*51, that.imageWM.width, that.imageWM.height);
                         }
-                        
+
                         that.view.unlocal();
                     }
 
@@ -139,7 +139,7 @@
                         that.view.unlocal();
                     }
                     */
-                    
+
                 }
 
             }

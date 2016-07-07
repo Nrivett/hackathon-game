@@ -42,9 +42,10 @@ var Game = Class.extend({
         that.render();
         requestAnimationFrame(that.loop);
     },
-
+    updateCounter : 0,
     update: function()
     {
+
         context.clearRect(0, 0, canvas.width, canvas.height);
         for (var i = 0, l = this.entities.length; i < l; i++) {
             this.entities[i].update();
@@ -55,8 +56,12 @@ var Game = Class.extend({
             that.isPaused = true;
         }
 
+        console.log("Counter:"+this.updateCounter);
 
-        if((this.counter%1000===0) && this.counter >1) this._powerUps.addFuelItem(this._map.lastYPos, this._map.lastHeight);
+        if((this.updateCounter%650===0) && this.updateCounter >1){
+            console.log("ADDED FUEL ITEMADDED FUEL ITEMADDED FUEL ITEMADDED FUEL ITEMADDED FUEL ITEMADDED FUEL ITEMADDED FUEL ITEM");
+            this._powerUps.addFuelItem(this._map.lastYPos, this._map.lastHeight);
+        }
 
         if(this._helicopter.getBody().testCollision(this._powerUps)){
             this._powerUps.powerUpToken();
@@ -70,8 +75,8 @@ var Game = Class.extend({
             if(HelicopterGame.UI.getFuel()<1) this._helicopter.endFuel();
         }
 
-        this.counter++;
-
+        ++this.counter;
+        ++this.updateCounter;
     },
 
     render: function()
