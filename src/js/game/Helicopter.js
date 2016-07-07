@@ -17,7 +17,7 @@
         helicopterColor: '#666666',
         helicopterExplosionColor: '#333333',
         helicopterExplosionScale:1,
-        smokeColor: '#666666',
+        smokeColor: '#cfcfcf',
         helicopterBodyShape:null,
         helicopterCrashedBodyShape: null,
         smokesArray:[],
@@ -132,7 +132,7 @@
                         that.image = new Image();
                         that.image.src = that.imageUrl;
 
-                        that.view.drawImage(that.image, -84, -28, 166, 57);
+                        that.view.drawImage(that.image, -65, -22, 130, 45);
 
                     }else{
                         var alpha = 1-(that.helicopterExplosionScale/2);
@@ -148,7 +148,7 @@
                     that.view.local(that.body.x, that.body.y);
 
                     if(that.isPlaying && (that.counter % that.smokeFrequency===0)) {
-                        var smoke = {xPos:-84, yPos:that.body.y-10-(that.body.rotation*50), width:10, height:10, alpha:1};
+                        var smoke = {xPos:-65, yPos:that.body.y-10-(that.body.rotation*50), width:10, height:10, alpha:1};
                         that.smokesArray.push(smoke);
                     }
 

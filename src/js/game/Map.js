@@ -31,12 +31,16 @@
         imageGrass: new Image(),
         imageGrass2: new Image(),
         imageSky: new Image(),
+        imageCloud01: new Image(),
+        imageCloud02: new Image(),
 
-        imageTreeUrl: 'http://corehtml5canvas.com/code-live//shared/images/smalltree.png',
-        imageNearTreeUrl: 'http://corehtml5canvas.com/code-live//shared/images/tree-twotrunks.png',
-        imageGrassUrl: 'http://corehtml5canvas.com/code-live//shared/images/grass.png',
-        imageGrass2Url: 'http://corehtml5canvas.com/code-live//shared/images/grass2.png',
-        imageSkyUrl: 'http://corehtml5canvas.com/code-live//shared/images/sky.png',
+        imageTreeUrl: 'images/smalltree.png',
+        imageNearTreeUrl: 'images/tree-twotrunks.png',
+        imageGrassUrl: 'images/grass.png',
+        imageGrass2Url: 'images/grass2.png',
+        imageSkyUrl: 'images/sky.png',
+        imageCloud01Url: 'images/cloud01.png',
+        imageCloud02Url: 'images/cloud02.png',
 
         fps: 60,
 
@@ -44,12 +48,15 @@
         grassOffset: 0,
         treeOffset: 0,
         nearTreeOffset: 0,
+        cloud01Offset: 0,
+        cloud02Offset: 0,
 
         TREE_VELOCITY: 120,
         FAST_TREE_VELOCITY: 140,
-        SKY_VELOCITY: 108,
+        SKY_VELOCITY: 80,
         GRASS_VELOCITY: 275,
-
+        CLOUD01_VELOCITY: 60,
+        CLOUD02_VELOCITY: 100,
 
 
         // constructor
@@ -93,6 +100,8 @@
             this.imageGrass.src = this.imageGrassUrl;
             this.imageGrass2.src = this.imageGrass2Url;
             this.imageSky.src = this.imageSkyUrl;
+            this.imageCloud01.src = this.imageCloud01Url;
+            this.imageCloud02.src = this.imageCloud02Url;
 
             
 
@@ -147,15 +156,15 @@
                     //     if((wallBlockObj.xPos+that.body.x)>232 && (wallBlockObj.xPos+that.body.x)<327){
 
 
-                    //         if((typeof that._helicopter!=='undefined') && that._helicopter.body.y+20< wallBlockObj.yPos ){
-                    //             // console.log('collision');
-                    //             that.isPlaying=false;
-                    //         }
-                    //         if((typeof that._helicopter!=='undefined') && that._helicopter.body.y-5 > wallBlockObj.yPos+wallBlockObj.height ){
-                    //             // console.log('collision');
-                    //             that.isPlaying=false;
-                    //         }
-                    //     }
+                        //     if((typeof that._helicopter!=='undefined') && that._helicopter.body.y+20< wallBlockObj.yPos ){
+                        //         // console.log('collision');
+                        //         that.isPlaying=false;
+                        //     }
+                        //     if((typeof that._helicopter!=='undefined') && that._helicopter.body.y-5 > wallBlockObj.yPos+wallBlockObj.height ){
+                        //         // console.log('collision');
+                        //         that.isPlaying=false;
+                        //     }
+                        // }
 
                     // }
                     
@@ -167,26 +176,38 @@
                     that.view.unlocal();
 
                     that.view.local(-that.treeOffset, 0);
-                    that.view.drawImage(that.imageTree, 100, 240);
-                    that.view.drawImage(that.imageTree, 1100, 240);
-                    that.view.drawImage(that.imageTree, 400, 240);
-                    that.view.drawImage(that.imageTree, 1400, 240);
-                    that.view.drawImage(that.imageTree, 700, 240);
-                    that.view.drawImage(that.imageTree, 1700, 240);
+                    that.view.drawImage(that.imageTree, 100, 416);
+                    that.view.drawImage(that.imageTree, 1100, 416);
+                    that.view.drawImage(that.imageTree, 400, 416);
+                    that.view.drawImage(that.imageTree, 1400, 416);
+                    that.view.drawImage(that.imageTree, 700, 416);
+                    that.view.drawImage(that.imageTree, 1700, 416);
+                    that.view.unlocal();
+ 
+                    that.view.local(-that.nearTreeOffset, 0);
+                    that.view.drawImage(that.imageNearTree, 250, 403);
+                    that.view.drawImage(that.imageNearTree, 1250, 403);
+                    that.view.drawImage(that.imageNearTree, 800, 403);
+                    that.view.drawImage(that.imageNearTree, 1800, 403);
                     that.view.unlocal();
 
-                    that.view.local(-that.nearTreeOffset, 0);
-                    that.view.drawImage(that.imageNearTree, 250, 220);
-                    that.view.drawImage(that.imageNearTree, 1250, 220);
-                    that.view.drawImage(that.imageNearTree, 800, 220);
-                    that.view.drawImage(that.imageNearTree, 1800, 220);
+                    that.view.local(-that.cloud01Offset, 0);
+                    that.view.drawImage(that.imageCloud01, 1600, 120);
+                    that.view.drawImage(that.imageCloud01, 1100, 140);
+                    that.view.drawImage(that.imageCloud01, 1400, 80);
+                    that.view.unlocal();
+
+                    that.view.local(-that.cloud02Offset, 0);
+                    that.view.drawImage(that.imageCloud02, 1400, 200);
+                    that.view.drawImage(that.imageCloud02, 1700, 180);
+                    that.view.drawImage(that.imageCloud02, 1200, 160);
                     that.view.unlocal();
 
                     that.view.local(-that.grassOffset, 0);
-                    that.view.drawImage(that.imageGrass, 0, 550 - that.imageGrass.height);
-                    that.view.drawImage(that.imageGrass, that.imageGrass.width-5, 550-that.imageGrass.height);
-                    that.view.drawImage(that.imageGrass2, 0, 550 - that.imageGrass2.height);
-                    that.view.drawImage(that.imageGrass2, that.imageGrass2.width, 550-that.imageGrass2.height);
+                    that.view.drawImage(that.imageGrass, 0, 555 - that.imageGrass.height);
+                    that.view.drawImage(that.imageGrass, that.imageGrass.width-5, 555-that.imageGrass.height);
+                    that.view.drawImage(that.imageGrass2, 0, 555 - that.imageGrass2.height);
+                    that.view.drawImage(that.imageGrass2, that.imageGrass2.width, 555-that.imageGrass2.height);
                     that.view.unlocal();
 
 
@@ -225,10 +246,12 @@
 
                 // this.body.x -= 4;
                 
-                this.skyOffset = (this.skyOffset < 995)? this.skyOffset + this.SKY_VELOCITY/this.fps : 0;
+                this.skyOffset = (this.skyOffset < (this.imageSky.width-1) )? this.skyOffset + this.SKY_VELOCITY/this.fps : 0;
                 this.grassOffset = (this.grassOffset < 995)? this.grassOffset +  this.GRASS_VELOCITY/this.fps : 0;
                 this.treeOffset = (this.treeOffset < 995)? this.treeOffset + this.TREE_VELOCITY/this.fps : 0;
                 this.nearTreeOffset = (this.nearTreeOffset < 995)? this.nearTreeOffset + this.FAST_TREE_VELOCITY/this.fps : 0;
+                this.cloud01Offset = (this.cloud01Offset < 1800)? this.cloud01Offset + this.CLOUD01_VELOCITY/this.fps : 0;
+                this.cloud02Offset = (this.cloud02Offset < 1800)? this.cloud02Offset + this.CLOUD02_VELOCITY/this.fps : 0;
 
 
                 if((this.counter % this.levelFrequency)===0){
