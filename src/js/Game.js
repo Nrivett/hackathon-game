@@ -17,11 +17,15 @@ var Game = Class.extend({
     {
         that = this;
 
+        // 01. Adding Views
         this.addMap();
         this.addPowerUps();
         this.addHelicopter();
+
+        // 02. Setting up Collisions
         this._map.testCollision(this._helicopter);
 
+        // 03. Start Rendering
         that.update();
         that.render();
 
@@ -38,8 +42,6 @@ var Game = Class.extend({
         requestAnimationFrame(that.loop);
     },
 
-
-
     update: function()
     {
         context.clearRect(0, 0, canvas.width, canvas.height);
@@ -48,7 +50,6 @@ var Game = Class.extend({
         }
 
         if(this._map.isGameOver()){
-            console.log('Game Over');
             this.endGame();
             that.isPaused = true;
         }
@@ -119,7 +120,7 @@ var Game = Class.extend({
         entity.sub('destroyed', function(destroyedEntity) {
             this.onEntityDestroyed( destroyedEntity );
         });
-*/
+        */
 
         if ( entity.getView() ) {
         }

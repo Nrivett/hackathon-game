@@ -1,6 +1,3 @@
-
-This is a fork of Tanks original game called pixel-copter... See below for details
-
 pixel-copter
 ============
 My game entry for js13kGames competition (2013) (http://js13kgames.com).

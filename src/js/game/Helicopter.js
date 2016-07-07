@@ -10,6 +10,9 @@
 
         gamePad: null,
 
+        image: null,
+        imageUrl: 'images/aol-blimp-responsive.png',
+
         color: '#FF0000',
         helicopterColor: '#666666',
         helicopterExplosionColor: '#333333',
@@ -85,10 +88,13 @@
             this.view = this.getView();
             this.view = new HelicopterGame.View();
             this.view.alpha =1;
+
             var that = this;
+
             this.view.spritePainter = {
 
                 paint: function (sprite, context) {
+
                     // helicopter
                     if(that.isPlaying){
                         that.view.local(that.body.x, that.body.y, that.body.rotation);
@@ -96,31 +102,38 @@
                         that.view.local(that.body.x, that.body.y+15, that.body.rotation);
                     }
 
-
+                    
 
                     if(that.isPlaying){
-                        var helicopterShapeObj;
-                        for(i=0;i<that.helicopterBodyShape.length;i++){
-                            if(i==6 && (that.counter%2)===0){
-                                helicopterShapeObj = that.helicopterBodyShape[6];
-                                if(helicopterShapeObj[2]==77){
-                                    helicopterShapeObj[0] =15.5+20-52;
-                                    helicopterShapeObj[2] =40;
-                                }else if(helicopterShapeObj[2]==40){
-                                    helicopterShapeObj[0] =15.5-52
-                                    helicopterShapeObj[2] =0;
-                                }else if(helicopterShapeObj[2]==0){
-                                    if((that.counter%5)===0){
-                                        helicopterShapeObj[0] =15.5+20-52;
-                                        helicopterShapeObj[2] =39;
-                                    }
-                                }else if(helicopterShapeObj[2]==39){
-                                    helicopterShapeObj[0] =15.5-52
-                                    helicopterShapeObj[2] =77;
-                                }
-                            }
-                            that.view.fillRect(that.helicopterBodyShape[i][0],that.helicopterBodyShape[i][1],that.helicopterBodyShape[i][2],that.helicopterBodyShape[i][3],that.helicopterColor);
-                        }
+
+                        // var helicopterShapeObj;
+                        // for(i=0;i<that.helicopterBodyShape.length;i++){
+                        //     if(i==6 && (that.counter%2)===0){
+                        //         helicopterShapeObj = that.helicopterBodyShape[6];
+                        //         if(helicopterShapeObj[2]==77){
+                        //             helicopterShapeObj[0] =15.5+20-52;
+                        //             helicopterShapeObj[2] =40;
+                        //         }else if(helicopterShapeObj[2]==40){
+                        //             helicopterShapeObj[0] =15.5-52
+                        //             helicopterShapeObj[2] =0;
+                        //         }else if(helicopterShapeObj[2]==0){
+                        //             if((that.counter%5)===0){
+                        //                 helicopterShapeObj[0] =15.5+20-52;
+                        //                 helicopterShapeObj[2] =39;
+                        //             }
+                        //         }else if(helicopterShapeObj[2]==39){
+                        //             helicopterShapeObj[0] =15.5-52
+                        //             helicopterShapeObj[2] =77;
+                        //         }
+                        //     }
+
+                        //     that.view.fillRect(that.helicopterBodyShape[i][0],that.helicopterBodyShape[i][1],that.helicopterBodyShape[i][2],that.helicopterBodyShape[i][3],that.helicopterColor);
+                        // }
+                        that.image = new Image();
+                        that.image.src = that.imageUrl;
+
+                        that.view.drawImage(that.image, -84, -28, 166, 57);
+
                     }else{
                         var alpha = 1-(that.helicopterExplosionScale/2);
                         that.view.fillPolygon(that.helicopterExplosionColor, 5, that.helicopterCrashedBodyShape, that.helicopterExplosionScale, (that.helicopterExplosionScale*1), 0, 0, alpha);
@@ -135,7 +148,7 @@
                     that.view.local(that.body.x, that.body.y);
 
                     if(that.isPlaying && (that.counter % that.smokeFrequency===0)) {
-                        var smoke = {xPos:-52, yPos:that.body.y-5-(that.body.rotation*50), width:10, height:10, alpha:1};
+                        var smoke = {xPos:-84, yPos:that.body.y-10-(that.body.rotation*50), width:10, height:10, alpha:1};
                         that.smokesArray.push(smoke);
                     }
 
@@ -155,8 +168,8 @@
                     that.counter++;
                 }
             };
+
             this.view.sprite = new Sprite('helicopter', this.view.spritePainter);
-            console.log("painting the Helicopter sprite");
             this.view.spritePainter.paint(this.view.sprite, context);
 
             this.gamePad = new HelicopterGame.GamePad();
@@ -200,7 +213,8 @@
         },
         endGame: function(){
             this.isPlaying = false;
-        }
+        },
+
     });
 
 var main = this;

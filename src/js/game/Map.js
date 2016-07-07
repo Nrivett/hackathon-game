@@ -8,7 +8,7 @@
         body: null,
         physics: null,
 
-        color: '#CCCCCC',
+        color: '#FFFFFF',
         wallBlockWidth: 4,
         wallBlocksArray: [],
         counter:0,
