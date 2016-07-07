@@ -43,15 +43,15 @@
 
         #inner-wrapper { position: absolute; top: 0; left: 475px; width: 948px; height: 100%; margin-left: -320px; }
 
-        #intro, #end { display: none; position: absolute; top: 95px; left: 50px; width: 500px; height: 300px; background: #999999; color: #333333; padding: 20px 25px; border: 2px solid #333333; }
+        #intro, #end { display: none; position: absolute; top: 95px; left: 50px; width: 500px; height: 300px; background: #0f86a4; color: #ffffff; padding: 20px 25px; border: 2px solid #ffffff; }
             h1 { margin-bottom: .5em; }
             p, dl { margin-bottom: 1em; }
             p { line-height: 1.3em; }
-            button { clear: both; display: block; background: #666666; border: 2px outset #999999; padding: 6px 12px; cursor: pointer; }
+            button { clear: both; display: block; background: #6cc4da; border: 2px outset #ffffff; padding: 6px 12px; cursor: pointer; }
             button:active { border-style: inset; }
             dl { overflow: hidden; }
                 dt { clear: both; float: left; width: 250px; margin-bottom: 5px; }
-                dd { float: left; color: #333333; }
+                dd { float: left; color: #ffffff; }
             span.key { display: inline-block; background: #FFFFFF; color: #666666; padding: 0 20px; border: 1px outset #CCCCCC; }
 
     </style>
@@ -72,15 +72,15 @@
         <div id="inner-wrapper">
 
             <div id="intro">
-                <h1>Pixel-copter</h1>
-                <p>To navigate through, watch out for the tricky gravity with pressing <span class="key">space</span> bar to add thrust to your pixel-copter and release it before hitting the top and don't forget to collect fuel power-ups to not to get out of petrol. That's all you need to do.</p>
+                <h1>Blimp Game</h1>
+                <p>To navigate through, watch out for the tricky gravity with pressing <span class="key">space</span> bar to add thrust to your blimp and release it before hitting the top and don't forget to collect fuel power-ups to not to get out of petrol. That's all you need to do.</p>
                 <p><small>Looking for a good score? While trying to fly as straight as possible is a bit easier, it will not result in such a high score. Try to do some daring manouvers to receive some extra distance.<br/>Good Luck!</small></p>
                 <button id="begin">Begin</button>
             </div>
 
             <div id="end">
-                <h1>Pixel-copter</h1>
-                <p>Your Pixel-copter is down!</p>
+                <h1>Blimp Game</h1>
+                <p>Blimp is down!</p>
                 <p id="end-info"></p>
                 <dl>
                     <dt>You traveled:</dt>
@@ -115,6 +115,7 @@
 
 <script src="js/game/Helicopter.js"></script>
 <script src="js/game/Map.js"></script>
+<script src="js/game/Obstacles.js"></script>
 <script src="js/game/PowerUps.js"></script>
 
 <script type="text/javascript">

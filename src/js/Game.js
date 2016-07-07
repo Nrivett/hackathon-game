@@ -19,6 +19,7 @@ var Game = Class.extend({
 
         // 01. Adding Views
         this.addMap();
+        this.addObstacles();
         this.addPowerUps();
         this.addHelicopter();
 
@@ -137,7 +138,7 @@ var Game = Class.extend({
     },
 
     drawBackground: function(){
-        context.fillStyle = '#666666';
+        context.fillStyle = '#6cc4da';
         context.fillRect(0,0,fullWidth,fullHeight);
     },
 
@@ -145,6 +146,10 @@ var Game = Class.extend({
         this._map = new HelicopterGame.Map();
         this.addEntity(this._map);
 
+    },
+    addObstacles:function () {
+        this._obstacles = new HelicopterGame.Obstacles();
+        this.addEntity(this._obstacles);
     },
     addPowerUps:function () {
         this._powerUps = new HelicopterGame.PowerUps();

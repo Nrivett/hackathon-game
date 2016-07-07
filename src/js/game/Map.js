@@ -168,6 +168,10 @@
 
                     // }
                     
+                    if(typeof that._helicopter !== 'undefined' && (that._helicopter.body.y<0 || that._helicopter.body.y>510) ) {
+                        that.isPlaying = false;
+                    }
+                    
 
 
                     that.view.local(-that.skyOffset, 0);

@@ -15,7 +15,7 @@
 
         color: '#FF0000',
         helicopterColor: '#666666',
-        helicopterExplosionColor: '#333333',
+        helicopterExplosionColor: '#0f86a4',
         helicopterExplosionScale:1,
         smokeColor: '#cfcfcf',
         helicopterBodyShape:null,
