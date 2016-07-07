@@ -120,7 +120,12 @@
         context.fill();
     },
     drawImage: function(image, xPos, yPos, width, height){
-        context.drawImage(image, xPos, yPos, width, height);
+        if(width !== undefined) {
+            context.drawImage(image, xPos, yPos, width, height);
+        }else {
+            context.drawImage(image, xPos, yPos );
+        }
+        
         context.closePath();
     }
 

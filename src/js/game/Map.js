@@ -26,6 +26,32 @@
         _helicopter: undefined,
         isPlaying: true,
 
+        imageTree: new Image(),
+        imageNearTree: new Image(),
+        imageGrass: new Image(),
+        imageGrass2: new Image(),
+        imageSky: new Image(),
+
+        imageTreeUrl: 'http://corehtml5canvas.com/code-live//shared/images/smalltree.png',
+        imageNearTreeUrl: 'http://corehtml5canvas.com/code-live//shared/images/tree-twotrunks.png',
+        imageGrassUrl: 'http://corehtml5canvas.com/code-live//shared/images/grass.png',
+        imageGrass2Url: 'http://corehtml5canvas.com/code-live//shared/images/grass2.png',
+        imageSkyUrl: 'http://corehtml5canvas.com/code-live//shared/images/sky.png',
+
+        fps: 60,
+
+        skyOffset: 0,
+        grassOffset: 0,
+        treeOffset: 0,
+        nearTreeOffset: 0,
+
+        TREE_VELOCITY: 120,
+        FAST_TREE_VELOCITY: 140,
+        SKY_VELOCITY: 108,
+        GRASS_VELOCITY: 275,
+
+
+
         // constructor
         init: function()
         {
@@ -60,7 +86,21 @@
             this.view = new HelicopterGame.View();
             this.view.alpha =1;
 
+
+
+            this.imageTree.src = this.imageTreeUrl;
+            this.imageNearTree.src = this.imageNearTreeUrl;
+            this.imageGrass.src = this.imageGrassUrl;
+            this.imageGrass2.src = this.imageGrass2Url;
+            this.imageSky.src = this.imageSkyUrl;
+
+            
+
             var that = this;
+
+
+
+
 
             var wallBlockObj;
             this.heightReductionByLevel = (this.level*40);
@@ -83,42 +123,72 @@
 
                     that.view.local(that.body.x, that.body.y);
 
-                    if(isWithNewWallObject){
-                        that.wallBlocksArray.shift();
-                        //console.log('new xPos : '+Number(that.wallArray[that.wallArray.length-1].xPos+that.wallBlockWidth))
-                        var lastWallBlockObj = that.wallBlocksArray[that.wallBlocksArray.length-1];
+                    // if(isWithNewWallObject){
+                    //     that.wallBlocksArray.shift();
+                    //     //console.log('new xPos : '+Number(that.wallArray[that.wallArray.length-1].xPos+that.wallBlockWidth))
+                    //     var lastWallBlockObj = that.wallBlocksArray[that.wallBlocksArray.length-1];
 
-                        var newHeight = that.getNewHeightValue(lastWallBlockObj.height);
-                        var newYPos = that.getNewYPosValue(newHeight);
-                        that.lastYPos = newYPos;
-                        that.lastHeight = newHeight;
+                    //     var newHeight = that.getNewHeightValue(lastWallBlockObj.height);
+                    //     var newYPos = that.getNewYPosValue(newHeight);
+                    //     that.lastYPos = newYPos;
+                    //     that.lastHeight = newHeight;
 
-                        wallBlockObj = {xPos:lastWallBlockObj.xPos+that.wallBlockWidth, yPos:newYPos, height:newHeight}
-                        that.wallBlocksArray.push(wallBlockObj);
-                    }
-
-
+                    //     wallBlockObj = {xPos:lastWallBlockObj.xPos+that.wallBlockWidth, yPos:newYPos, height:newHeight}
+                    //     that.wallBlocksArray.push(wallBlockObj);
+                    // }
 
 
-                    for(var i=0; i<that.wallBlocksArray.length; i++){
-                        wallBlockObj = that.wallBlocksArray[i];
-                        that.view.fillRect(wallBlockObj.xPos, wallBlockObj.yPos, that.wallBlockWidth, wallBlockObj.height, that.color);
-                        //if( (typeof that._helicopter!=='undefined')  && (that.counter%10===0) && (i%10===0)) console.log('wallBlockObj.xPos: '+(wallBlockObj.xPos+that.body.x)+ ' wallBlockObj.yPos: '+wallBlockObj.yPos+ '  helicopter.y: '+that._helicopter.body.y);
-                        if((wallBlockObj.xPos+that.body.x)>232 && (wallBlockObj.xPos+that.body.x)<327){
 
 
-                            if((typeof that._helicopter!=='undefined') && that._helicopter.body.y+20< wallBlockObj.yPos ){
-                                // console.log('collision');
-                                that.isPlaying=false;
-                            }
-                            if((typeof that._helicopter!=='undefined') && that._helicopter.body.y-5 > wallBlockObj.yPos+wallBlockObj.height ){
-                                // console.log('collision');
-                                that.isPlaying=false;
-                            }
-                        }
+                    // for(var i=0; i<that.wallBlocksArray.length; i++){
+                    //     wallBlockObj = that.wallBlocksArray[i];
+                    //     that.view.fillRect(wallBlockObj.xPos, wallBlockObj.yPos, that.wallBlockWidth, wallBlockObj.height, that.color);
+                    //     //if( (typeof that._helicopter!=='undefined')  && (that.counter%10===0) && (i%10===0)) console.log('wallBlockObj.xPos: '+(wallBlockObj.xPos+that.body.x)+ ' wallBlockObj.yPos: '+wallBlockObj.yPos+ '  helicopter.y: '+that._helicopter.body.y);
+                    //     if((wallBlockObj.xPos+that.body.x)>232 && (wallBlockObj.xPos+that.body.x)<327){
 
-                    }
+
+                    //         if((typeof that._helicopter!=='undefined') && that._helicopter.body.y+20< wallBlockObj.yPos ){
+                    //             // console.log('collision');
+                    //             that.isPlaying=false;
+                    //         }
+                    //         if((typeof that._helicopter!=='undefined') && that._helicopter.body.y-5 > wallBlockObj.yPos+wallBlockObj.height ){
+                    //             // console.log('collision');
+                    //             that.isPlaying=false;
+                    //         }
+                    //     }
+
+                    // }
+                    
+
+
+                    that.view.local(-that.skyOffset, 0);
+                    that.view.drawImage(that.imageSky, 0, 0);
+                    that.view.drawImage(that.imageSky, that.imageSky.width-2, 0);
                     that.view.unlocal();
+
+                    that.view.local(-that.treeOffset, 0);
+                    that.view.drawImage(that.imageTree, 100, 240);
+                    that.view.drawImage(that.imageTree, 1100, 240);
+                    that.view.drawImage(that.imageTree, 400, 240);
+                    that.view.drawImage(that.imageTree, 1400, 240);
+                    that.view.drawImage(that.imageTree, 700, 240);
+                    that.view.drawImage(that.imageTree, 1700, 240);
+                    that.view.unlocal();
+
+                    that.view.local(-that.nearTreeOffset, 0);
+                    that.view.drawImage(that.imageNearTree, 250, 220);
+                    that.view.drawImage(that.imageNearTree, 1250, 220);
+                    that.view.drawImage(that.imageNearTree, 800, 220);
+                    that.view.drawImage(that.imageNearTree, 1800, 220);
+                    that.view.unlocal();
+
+                    that.view.local(-that.grassOffset, 0);
+                    that.view.drawImage(that.imageGrass, 0, 550 - that.imageGrass.height);
+                    that.view.drawImage(that.imageGrass, that.imageGrass.width-5, 550-that.imageGrass.height);
+                    that.view.drawImage(that.imageGrass2, 0, 550 - that.imageGrass2.height);
+                    that.view.drawImage(that.imageGrass2, that.imageGrass2.width, 550-that.imageGrass2.height);
+                    that.view.unlocal();
+
 
                     that.view.local(that.body.x, that.body.y);
                     //power up
@@ -127,7 +197,7 @@
 
                 }
             };
-            this.view.sprite = new Sprite('asteroid'+Math.random()*100, this.view.spritePainter);
+            this.view.sprite = new Sprite('map'+Math.random()*100, this.view.spritePainter);
             this.view.spritePainter.paint(this.view.sprite, context);
 
         },
@@ -153,7 +223,13 @@
 
             if(this.isPlaying){
 
-                this.body.x -= 4;
+                // this.body.x -= 4;
+                
+                this.skyOffset = (this.skyOffset < 995)? this.skyOffset + this.SKY_VELOCITY/this.fps : 0;
+                this.grassOffset = (this.grassOffset < 995)? this.grassOffset +  this.GRASS_VELOCITY/this.fps : 0;
+                this.treeOffset = (this.treeOffset < 995)? this.treeOffset + this.TREE_VELOCITY/this.fps : 0;
+                this.nearTreeOffset = (this.nearTreeOffset < 995)? this.nearTreeOffset + this.FAST_TREE_VELOCITY/this.fps : 0;
+
 
                 if((this.counter % this.levelFrequency)===0){
                     this.level++;
@@ -161,6 +237,7 @@
                 }
 
                 this.counter++;
+
                 HelicopterGame.UI.displayDistance(this.counter*0.1);
 
             }
