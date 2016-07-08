@@ -55,7 +55,7 @@ var Game = Class.extend({
             this.endGame();
             that.isPaused = true;
         }
-        console.log("Counter:"+this.updateCounter);
+        // console.log("Counter:"+this.updateCounter);
 
         if((this.updateCounter%650===0) && this.updateCounter >1){
             console.log("ADDED FUEL ITEMADDED FUEL ITEMADDED FUEL ITEMADDED FUEL ITEMADDED FUEL ITEMADDED FUEL ITEMADDED FUEL ITEM");
