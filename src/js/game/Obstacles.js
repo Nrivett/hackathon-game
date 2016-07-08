@@ -186,6 +186,7 @@
         }
     });
 
-root.HelicopterGame.Obstacles = Obstacles;
+//Disabling these as collision detection code not done
+//root.HelicopterGame.Obstacles = Obstacles;
 
 })(window);
