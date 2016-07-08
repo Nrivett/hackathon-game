@@ -21,6 +21,7 @@ var Body = Class.extend({
 
     testCollision: function(otherEntity)
     {
+
         var dx = 0,
             dy = 0;
 
