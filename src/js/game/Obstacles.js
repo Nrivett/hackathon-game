@@ -51,8 +51,12 @@
                     "xPos": 1200
                 },
                 {
+                    "boxes": [0,0,0,0,0,0,0,1,0],
+                    "xPos": 1600
+                },
+                {
                     "boxes": [0,0,0,0,1,1,0,0,0],
-                    "xPos": 1800
+                    "xPos": 1900
                 },
                 {
                     "boxes": [0,1,1,0,0,0,0,0,0],
@@ -121,12 +125,21 @@
                         console.log(obj.boxes.length);
 
                         var l = obj.boxes.length;
+                        var yPos;
                         for (n = 0; n < l; n++) {
-                            if(obj.boxes[n]===1) that.view.drawImage(that.imageWM, obj.xPos, n*51, that.imageWM.width, that.imageWM.height);
+                            yPos = n*51;
+                            if(obj.boxes[n]===1) that.view.drawImage(that.imageWM, obj.xPos, yPos, that.imageWM.width, that.imageWM.height);
+
+                            if((typeof that._helicopter!=='undefined') && (that._helicopter.body.y > yPos && that._helicopter.body.y > yPos) ){
+
+                            }
                         }
 
                         that.view.unlocal();
+
+
                     }
+                    
 
 
                     /*

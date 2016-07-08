@@ -51,11 +51,10 @@ var Game = Class.extend({
             this.entities[i].update();
         }
 
-        if(this._map.isGameOver()){
+        if(this._map.isGameOver() ){
             this.endGame();
             that.isPaused = true;
         }
-
         console.log("Counter:"+this.updateCounter);
 
         if((this.updateCounter%650===0) && this.updateCounter >1){
