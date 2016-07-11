@@ -64,12 +64,12 @@ window.onkeydown = window.onkeyup = function(e) {
             return false;
         }
     }
-    if(key == 32 && e.target == document.body) {
+
+    if (key == 32 && e.target == document.body) {
         e.preventDefault();
         return false;
     }
-};
-
+    
 };
 
 // static var
