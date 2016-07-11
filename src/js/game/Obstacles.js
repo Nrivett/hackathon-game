@@ -130,9 +130,7 @@
                             yPos = n*51;
                             if(obj.boxes[n]===1) that.view.drawImage(that.imageWM, obj.xPos, yPos, that.imageWM.width, that.imageWM.height);
 
-                            if((typeof that._helicopter!=='undefined') && (that._helicopter.body.y > yPos && that._helicopter.body.y > yPos) ){
 
-                            }
                         }
 
                         that.view.unlocal();
@@ -199,7 +197,7 @@
         }
     });
 
-//Disabling these as collision detection code not done
-//root.HelicopterGame.Obstacles = Obstacles;
+// Disabling these as collision detection code not done
+// root.HelicopterGame.Obstacles = Obstacles;
 
 })(window);

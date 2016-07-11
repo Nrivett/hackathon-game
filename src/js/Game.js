@@ -152,7 +152,7 @@ var Game = Class.extend({
 
     },
     addObstacles:function () {
-        this._obstacles = new HelicopterGame.MinorObstacles();
+        this._obstacles = new HelicopterGame.Obstacles();
         this.addEntity(this._obstacles);
     },
     addPowerUps:function () {

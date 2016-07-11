@@ -50,7 +50,7 @@
                 paint:function(sprite,context){
                     if(that.image.complete){
                         that.view.local(that.body.x, that.body.y);
-                        that.view.strokeCircle(-1,0,18,2,'#333333');
+                        // that.view.strokeCircle(-1,0,18,2,'#333333');
                         that.view.drawImage(that.image, -that.image.width/2, -11, that.image.width, that.image.height);
                         that.view.unlocal();
                     }
@@ -79,10 +79,10 @@
             Applying the new physical changes to our body
             */
             //the old codes iterating the counter... it probs shouldnt be... lets check
-            if(that.counter < 20) console.log("Counter less than 20:" + that.counter);
+            // if(that.counter < 20) console.log("Counter less than 20:" + that.counter);
 
             //ad an obstacle
-            //if((that.counter%400===0) && that.counter >1) this.addObstacleItem();
+            if((that.counter%400===0) && that.counter >1) this.addObstacleItem();
 
 
             if(this.isPlaying && this.body.x>-30) this.body.x -=3;
@@ -90,7 +90,7 @@
 
         addObstacleItem: function(yPos, height){
             //console.log('yPos: '+yPos+' height: '+height);
-            this.body.y = (yPos+25) + (Math.random()*(height-50));
+            this.body.y = Math.random()*550;
             // this.body.y = (yPos+11) + (Math.random()*height) - 11;
             this.body.x=fullWidth;
         },
